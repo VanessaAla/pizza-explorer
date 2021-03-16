@@ -1,0 +1,21 @@
+/*Add a new selectRestaurantsWithPizzas selector in src/store/selectors.js. You'll need to create a new array of restaurants, where you replace the array of pizza IDS with pizza objects from the pizzas slice.*/
+
+export const selectRestaurantsWithPizzas = (reduxState) => {
+  // .map returns a new (cloned) array so I don't have to worry about cloning it
+  return reduxState.restaurants.allRestaurants
+    .map((restaurant) => {
+      // replace each restaurant with a new object...
+      return {
+        // ...that contains everything from the original restaurant...
+        ...restaurant,
+        // ...but also replaces the pizzas array...
+        pizzas: restaurant.pizzas.map((pizzaId) =>
+          // ...so that it contains a list of pizzas instead of a list of ids
+          reduxState.pizzas.allPizzas.find((pizza) => pizza.id === pizzaId)
+        ),
+      };
+    })
+    .sort((a, b) => {
+      return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+    });
+};

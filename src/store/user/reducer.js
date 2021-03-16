@@ -1,5 +1,5 @@
 const initialState = {
-  name: "Helva",
+  name: "Vanessa",
   id: 42,
   favorites: [67283, 357311],
 };
