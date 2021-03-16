@@ -11,3 +11,6 @@ export const selectMostBoughtPizza = (reduxState) => {
     return mostBought.bought >= nextPizza.bought ? mostBought : nextPizza;
   });
 };
+
+//Define a selector to get the list of pizzas:
+export const selectPizzas = (reduxState) => reduxState.pizzas.allPizzas;
