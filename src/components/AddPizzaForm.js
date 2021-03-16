@@ -1,18 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPizza } from "../store/pizzas/actions";
 
 export default function AddPizzaForm() {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
   const submit = (event) => {
     // to make sure that the form does not redirect (which is normal browser behavior)
     event.preventDefault();
-
-    console.log("new pizza:", name, description);
-
-    // TODO:
     // - dispatch an action that sends the new pizza to the store
-    // - clear the input fields
+    dispatch(addPizza({ name, description }));
+    setName("");
+    setDescription("");
   };
 
   return (
